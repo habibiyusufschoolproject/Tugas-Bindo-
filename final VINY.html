@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Panturas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --vinyl-size: 12rem;
+            --label-size: 4.5rem;
+            --sleeve-width: 12rem;
+            --sleeve-height: 12rem;
+        }
+        @media (min-width: 768px) {
+            :root {
+                --vinyl-size: 16rem;
+                --label-size: 5.2rem;
+                --sleeve-width: 16rem;
+                --sleeve-height: 16rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            :root {
+                --vinyl-size: 30rem;
+                --label-size: 6rem;
+                --sleeve-width: 30rem;
+                --sleeve-height: 30rem;
+            }
+        }
+
+        body {
+            background: #efefef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .mockup-container {
+            display: grid;
+            grid-template-columns: var(--sleeve-width) var(--sleeve-width);
+            background: white;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .album-cover {
+            width: var(--sleeve-width);
+            height: var(--sleeve-height);
+            background-image: url('https://www.whiteboardjournal.com/wp-content/uploads/2021/09/unnamed-5.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .vinyl-section {
+            width: var(--sleeve-width);
+            height: var(--sleeve-height);
+            background: #e3e3e3;
+            position: relative;
+            overflow: visible;
+        }
+
+        /* PERBAIKAN POSISI VINYL */
+        .vinyl {
+            width: var(--vinyl-size);
+            height: var(--vinyl-size);
+            position: absolute;
+            left: calc(-1 * var(--vinyl-size) * 0.0); /* posisi pas keluar sedikit */
+            top: 0%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #111 0%, #111 15%, #000 15%, #000 100%);
+            animation: spin 3s linear infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 0 20px rgba(0,0,0,0.9);
+        }
+
+        .vinyl:hover {
+            animation-play-state: paused;
+        }
+
+        .vinyl-label {
+            width: var(--label-size);
+            height: var(--label-size);
+            background: blue;
+            border-radius: 50%;
+            border: 2px solid #4b2600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .spindle-hole {
+            width: 0.8rem;
+            height: 0.8rem;
+            background: #111;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .vertical-text {
+            position: absolute;
+            left: calc(var(--sleeve-width) - 3rem);
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: black;
+        }
+
+        .bad-text {
+            position: absolute;
+            font-size: 6rem;
+            font-weight: bold;
+            color: red;
+            text-shadow: 2px 2px 0 #000;
+            transform: rotate(-12deg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="mockup-container">
+    <div class="album-cover">
+        <div class="bad-text" style="top: 18%; left: 0%;"></div>
+    </div>
+
+    <div class="vinyl-section">
+        <div class="vertical-text">PANTURAS</div>
+
+        <div class="vinyl flex items-center justify-center">
+            <div class="vinyl-label">
+                <div class="spindle-hole"></div>
+                <span>La Luna</span>
+                <span style="font-size: .6rem; opacity:.7">MUSIC RECORDS</span>
+            </div>
+        </div>
+
+        <div class="bad-text" style="top: 8%; left: 48%;"></div>
+    </div>
+</div>
+
+</body>
+</html>
